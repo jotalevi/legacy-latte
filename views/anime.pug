@@ -1,0 +1,22 @@
+html
+  head
+    include head.pug
+  body
+    div(class='main-frame')
+      include header.pug
+      div(class='animeview')
+        p(class='animetitleps')=title
+        div(class='h50')
+        div(class='headframe-eps')
+          img(src=thumbnail, alt=title, class='animethumb')
+          br 
+          p(class='linked sfAnime')=info
+      div(class='h50')
+      div(class='eplist')
+        - var iEp = 1
+        each ep in episodes
+          a(href=`/episode/${ep}`)
+            div(class='epboxvs')
+              p(class='linked')=`${iEp}`
+          - iEp++ 
+      div(class='h200')

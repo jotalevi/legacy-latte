@@ -1,0 +1,422 @@
+@media (max-device-width: 480px){
+    .main-frame {
+        width: 100% !important;
+    }
+
+    .animediv{
+        height: 400px !important;
+        width: 200px !important;
+    }
+
+    .thumbdiv{
+        width: 200px !important;
+        height: 300px !important;
+    }
+
+    .linked{
+        font-size: 28 !important;
+    }
+
+    .fvfTabBoxeA{
+        
+        height: 75 !important;
+        width: 75 !important;
+        font-size: 24px !important;
+    }
+
+    .fvfTabBoxes{      
+        height: 75 !important;
+        width: 75 !important;
+        font-size: 24px !important;
+    }
+
+    .sbdivhelper{
+        height: 200 !important;
+    }
+    
+    .searchbar {
+        width: 350px !important;
+        height: 60px !important;
+        font-size: 22px !important;
+    }
+
+    .headerdivshelper{
+        height: 200px !important;
+    }
+
+    .logoh1{
+        font-size: 100px !important;
+    }
+
+    .animetitleps {
+        font-size: 42px !important;
+    }
+
+    .headframe-eps{
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .animethumb{
+        width: 80% !important;
+        height: auto !important;
+    }
+
+    .sfAnime {
+        font-size: 14px !important;
+    }
+
+    .epboxvs{
+        height: 100px !important;
+        width: 100px !important;
+    }
+
+    .eplist{
+        width: 90% !important;
+    }
+
+    .srb{
+        width: 100% !important;
+        left: 0 !important;
+        margin-left: 0 !important;
+        top: 192px !important;
+    }
+
+    .minithumbdiv{
+        width: 200px !important;
+        height: 300px !important;
+    }
+
+    .animetitlepsinres{
+        overflow-wrap: break-word !important;
+        font-size: 27px !important;
+    }
+
+    .anime-result-div{
+        margin: 10 !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+body{
+    margin: 0;
+    background-color: black;
+    overflow-y: scroll;
+}
+
+.main-frame {
+    width: 800px;
+    background-color: #1c1c1c;
+    overflow: visible;
+    margin: auto;
+    padding: 0;
+    min-height: 100%; 
+}
+
+.headframe {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.headframe-eps{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.h50{
+    height: 50;
+}
+
+.h200{
+    height: 200;
+}
+
+.headerdivshelper{
+    height: 150;
+    display: table
+}
+
+input, select, textarea{
+    color: #ffffff;
+}
+
+p{
+    margin: auto;
+}
+
+.sbdivhelper{
+    display: grid;
+    place-items: center;
+    height: 150;
+}
+
+.logoh1{
+    white-space: pre;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Pacifico', cursive;
+    color: #466eb4;
+    font-size: 72px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    margin: 0;
+    text-align:center; 
+    vertical-align: middle;
+    display: table-cell;   
+}
+
+.searchbar {
+    box-sizing: border-box;
+    width: 350px;
+    height: 40px;
+    background-color: #000000;
+    overflow: visible;
+    border-radius: 5px;
+    border: 1px solid #466EB4;
+    margin: auto;
+    display: block;
+}
+
+.fvfDivFrame{
+    display: flex;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.fvfTabBoxes{
+    background-color: transparent;
+    height: 35;
+    width: 35;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    white-space: pre;
+    font-weight: 700;
+    font-family: "Inter-Bold", "Inter", sans-serif;
+    color: #ffffff !important;
+    font-size: 24px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #466eb4;
+}
+
+.fvfTabBoxeA{
+    background-color: #466eb4;
+    height: 35;
+    width: 35;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    white-space: pre;
+    font-weight: 700;
+    font-family: "Inter-Bold", "Inter", sans-serif;
+    color: #ffffff !important;
+    font-size: 24px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    ;
+}
+
+.animegridview{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.animediv{
+    height: 300;
+    width: 170px;
+    word-wrap:break-word;
+    text-align: center;
+    color: white;
+}
+
+.thumbdiv{
+    width: 170px;
+    height: 230px;
+    background-color: #466eb4;
+    overflow: visible;
+    border-radius: 5px;
+}
+
+.minithumbdiv{
+    width: 50;
+    height: 75;
+    background-color: #466eb4;
+    overflow: visible;
+    border-radius: 5px;
+}
+
+.linked{
+    font-family: "Inter-Bold", "Inter", sans-serif;
+}
+
+.animetitleps {
+    width: auto; /* 327px */
+    height: auto; /* 43px */
+    white-space: pre;
+    font-family: "Inter", sans-serif;
+    color: #ffffff;
+    font-size: 36px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.animethumb{
+    width: 300px;
+    height: 400px;
+    background-color: #466eb4;
+    overflow: visible;
+    border-radius: 5px;
+    margin-left: 20;
+}
+
+.sfAnime{
+    margin: 0 20;
+    color: white;
+}
+
+.epboxvs{
+    background-color: transparent;
+    height: 50;
+    width: 50;
+    margin: 2 auto;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    white-space: pre;
+    font-weight: 700;
+    font-family: "Inter-Bold", "Inter", sans-serif;
+    color: #ffffff !important;
+    font-size: 24px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #466EB4;
+}
+
+.eplist{
+    margin: auto;
+    width: 549px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.wframe{
+    margin: auto;
+    overflow: visible;
+    border-radius: 5px;
+}
+
+.extend-h-tab{
+    display: flex;
+    justify-content: space-between;
+}
+
+.srb{
+    display: flex;
+    position: absolute;
+    width: 800px;
+    left: 50%;
+    margin-left: -400px;
+    top: 150;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height:100%;
+    overflow:visible;
+    background-color: #1c1c1c;
+    border-radius: 5px;
+}
+
+.hidden{
+    display: none;
+}
+
+.anime-result-div{
+    display: flex;
+    margin-top: 10;
+    margin-left: 10;
+}
+
+.animetitlepsinres{
+    width: auto;
+    height: auto;
+    white-space: pre;
+    font-family: "Inter", sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 3;
+    margin-left: 5;
+}
+
+.vlistact{
+    width: 300px;
+    margin: 5px;
+}
+
+.tx-left{
+    text-align: left;
+}
+
+.tx-center{
+    text-align: center;
+}
+
+.tx-right{
+    text-align: right;
+}
+
+::-webkit-scrollbar {
+     width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5585d5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5585d5;
+}

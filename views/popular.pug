@@ -1,0 +1,19 @@
+html
+  head
+    include head.pug
+  body
+    div(class='main-frame')
+      include header.pug
+      include pageref.pug
+      div(class='h50')
+      div(class='animegridview')
+        each anime in results
+          a(href='/anime/' + anime.id)
+            div(class='animediv')
+              div(class='thumbdiv')
+                img(src=anime.thumbnail, alt=anime.title, class='thumbdiv')
+              br 
+              p(class='linked')=anime.title
+      div(class='h50')
+      include pageref.pug
+      div(class='h200')

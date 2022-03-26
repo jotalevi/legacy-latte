@@ -1,0 +1,29 @@
+html
+  head
+    include head.pug
+  body
+    div(class='main-frame')
+      include header.pug
+      div(class='animeview')
+        p(class='animetitleps')=title
+      div(class='h50')
+      div(class='wframe')
+        iframe(src=media_url, width='100%', height='360px', allowfullscreen='true', frameborder='0', marginwidth='0', marginheight='0', scrolling='no')
+      div(class='extend-h-tab')
+        if previousEp != '_'
+          a(href='/episode/' + previousEp, class='vlistact')
+            p(class='linked')='Previous Ep'
+        else
+          a(href='' + previousEp, class='vlistact tx-left')
+            p(class='linked')=''
+        
+        a(href='/anime/' + anime, class='vlistact tx-center')
+          p(class='linked')='View Anime Page'
+        
+        if nextEp != '_'
+          a(href='/episode/' + nextEp, class='vlistact tx-right')
+            p(class='linked')='Next Ep'
+        else
+          a(href='' + nextEp, class='vlistact')
+            p(class='linked')=''
+      div(class='h200')

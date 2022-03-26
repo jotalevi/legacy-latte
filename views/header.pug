@@ -1,0 +1,74 @@
+div(class='headframe')
+  a(href=`/`)
+    div(class='headerdivshelper')
+      p(class='logoh1')='Latte'
+  div(class='sbdivhelper')
+    input(type='text', class='searchbar', placeholder='Search', id='search-bar', onInput='updateSearchParam()', onChange='rdSearchResults()')
+    div(id='search-result-box', class='srb hidden', width='250')
+    script.
+      function rdSearchResults(){
+        let searchString = document.getElementById('search-bar').value.split(' ').join('%20')
+        if (searchString == ''){
+          return
+        }else{
+          //window.location.href = '/search/' + searchString
+        }
+      }
+
+      function updateSearchParam(){
+        document.showSResults = true
+        let searchString = document.getElementById('search-bar').value.split(' ').join('%20')
+        if (searchString == ''){
+          document.getElementById('search-result-box').classList.add('hidden')
+          document.showSResults = false
+          return
+        }else{
+          document.getElementById('search-result-box').classList.remove('hidden')
+        }
+
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            updateScreenData(xmlHttp.responseText);
+          }
+        xmlHttp.open("GET", 'http://localhost:9993/api/search/' + searchString, true); // true for asynchronous 
+        xmlHttp.send(null);
+      }
+
+      function updateScreenData(rsText){
+        var resultBox = document.getElementById("search-result-box");
+        var child = resultBox.lastChild; 
+        while (child) {
+            resultBox.removeChild(child);
+            child = resultBox.lastChild;
+        }
+
+        let data = JSON.parse(rsText)
+        for (let i = 0; i < data.results.length; i++){
+          let anime = data.results[i]
+
+          let a = document.createElement('a')
+          a.setAttribute('href', '/anime/' + anime.id)
+
+          let div = document.createElement('div')
+          div.setAttribute('class', 'anime-result-div')
+
+          let thumb = document.createElement('img')
+          thumb.setAttribute('class', 'minithumbdiv')
+          thumb.setAttribute('src', anime.thumbnail)
+
+          let title = document.createElement('p')
+          title.setAttribute('class', 'animetitlepsinres')
+          title.innerHTML = anime.title
+
+          div.appendChild(thumb)
+          div.appendChild(title)
+          a.appendChild(div)
+          resultBox.appendChild(a)
+        }
+
+        let div = document.createElement('div')
+        div.setAttribute('class', 'h200')
+        resultBox.appendChild(div)
+
+      }

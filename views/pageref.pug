@@ -1,0 +1,11 @@
+div(class='fvfDivFrame')
+  -var n = page - 5
+  while n < page + 6
+    if n == page
+      div(class='fvfTabBoxeA')
+        p(class='linked')=`${n}`
+    else if n > 0
+      a(href=`/popular/${n}`)
+        div(class='fvfTabBoxes')
+          p(class='linked')=`${n}`
+    - n++

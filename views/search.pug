@@ -1,0 +1,14 @@
+html
+  head
+    include head.pug
+  body
+    div(class='main-frame')
+      include header.pug
+      div(class='h50')
+      div(class='srb')
+        each anime in results
+          a(href='/anime/' + anime.id)
+            div(class='anime-result-div')
+              img(src=anime.thumbnail, alt=anime.title, class='minithumbdiv')
+              p(class='animetitlepsinres')=anime.title
+        div(class='h200')
