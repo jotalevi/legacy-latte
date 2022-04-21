@@ -31,7 +31,7 @@ div(class='headframe')
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             updateScreenData(xmlHttp.responseText);
           }
-        xmlHttp.open("GET", '18.189.244.112/api/search/' + searchString, true); // true for asynchronous 
+        xmlHttp.open("GET", '/api/search/' + searchString, true); // true for asynchronous 
         xmlHttp.send(null);
       }
 
