@@ -15,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 const routes = require('./routes');
 app.use(routes);
+app.use(express.static('public'))
 
 //Start http server
 const httpServer = http.createServer(app);
