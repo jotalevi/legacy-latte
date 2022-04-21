@@ -1,6 +1,6 @@
 const config = require('../../config')
-const axios = require("axios")
-const cheerio = require("cheerio")
+const axios = require('axios')
+const cheerio = require('cheerio')
 
 
 //com/scrape-query/popular/:page_no
@@ -14,7 +14,7 @@ const popular = async function (req, res){
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.popular}${req.params.page_no}`)
     const $ = cheerio.load(data)
 
-    const items = $(".items>li")
+    const items = $('.items>li')
     items.each(function (idx, el) {
         let anime = {}
         anime.id = $(el).children().children().attr('href').replace('/category/', '')
@@ -35,7 +35,7 @@ const anime = async function (req, res){
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.anime}${req.params.anime_id}`)
     const $ = cheerio.load(data)
 
-    const animeInfo = $(".anime_info_body_bg")
+    const animeInfo = $('.anime_info_body_bg')
     
     resContent.title = animeInfo.children('h1').text()
     resContent.thumbnail = animeInfo.children('img').attr('src')
@@ -64,7 +64,7 @@ const episode = async function (req, res){
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.episode}${req.params.episode_id}`)
     const $ = cheerio.load(data)
 
-    resContent.title = $(".anime_video_body").children('h1').text()
+    resContent.title = $('.anime_video_body').children('h1').text()
     resContent.media_url = $('iframe').attr('src').toString()
     
     let pvfContent = '_'
@@ -111,7 +111,7 @@ const search = async function (req, res){
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.search}${req.params.query}`)
     const $ = cheerio.load(data)
 
-    const items = $(".items>li")
+    const items = $('.items>li')
     items.each(function (idx, el) {
         let anime = {}
         anime.id = $(el).children().children().attr('href').replace('/category/', '')

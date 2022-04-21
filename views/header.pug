@@ -31,12 +31,12 @@ div(class='headframe')
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             updateScreenData(xmlHttp.responseText);
           }
-        xmlHttp.open("GET", '/api/search/' + searchString, true); // true for asynchronous 
+        xmlHttp.open('GET', '/api/search/' + searchString, true); // true for asynchronous 
         xmlHttp.send(null);
       }
 
       function updateScreenData(rsText){
-        var resultBox = document.getElementById("search-result-box");
+        var resultBox = document.getElementById('search-result-box');
         var child = resultBox.lastChild; 
         while (child) {
             resultBox.removeChild(child);

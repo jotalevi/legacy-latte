@@ -200,7 +200,7 @@ a{
     text-decoration: none;
     white-space: pre;
     font-weight: 700;
-    font-family: "Inter-Bold", "Inter", sans-serif;
+    font-family: 'Inter-Bold', 'Inter', sans-serif;
     color: #ffffff !important;
     font-size: 24px;
     letter-spacing: 0px;
@@ -224,7 +224,7 @@ a{
     text-decoration: none;
     white-space: pre;
     font-weight: 700;
-    font-family: "Inter-Bold", "Inter", sans-serif;
+    font-family: 'Inter-Bold', 'Inter', sans-serif;
     color: #ffffff !important;
     font-size: 24px;
     letter-spacing: 0px;
@@ -272,14 +272,14 @@ a{
 }
 
 .linked{
-    font-family: "Inter-Bold", "Inter", sans-serif;
+    font-family: 'Inter-Bold', 'Inter', sans-serif;
 }
 
 .animetitleps {
     width: auto; /* 327px */
     height: auto; /* 43px */
     white-space: pre;
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     color: #ffffff;
     font-size: 36px;
     letter-spacing: 0px;
@@ -312,7 +312,7 @@ a{
     text-decoration: none;
     white-space: pre;
     font-weight: 700;
-    font-family: "Inter-Bold", "Inter", sans-serif;
+    font-family: 'Inter-Bold', 'Inter', sans-serif;
     color: #ffffff !important;
     font-size: 24px;
     letter-spacing: 0px;
@@ -377,7 +377,7 @@ a{
     width: auto;
     height: auto;
     white-space: pre;
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     color: #ffffff;
     font-size: 16px;
     letter-spacing: 0px;
