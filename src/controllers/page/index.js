@@ -8,6 +8,8 @@ const popular = async function (req, res){
 
     resContent = {
         page: isNaN(parseInt(req.params.page_no)) ? 1 : parseInt(req.params.page_no),
+        og_title: 'Watch anime for free on UnLatte',
+        og_image: 'https://unlatte.cl/image/preview.png',
         results:[]
     }
 
@@ -30,6 +32,8 @@ const popular = async function (req, res){
 const anime = async function (req, res){
     resContent = {
         anime: req.params.anime_id,
+        og_title: '',
+        og_image: '',
     }
     //https://www3.gogoanime.cm/category/naruto-shippuuden-dub
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.anime}${req.params.anime_id}`)
@@ -38,7 +42,10 @@ const anime = async function (req, res){
     const animeInfo = $('.anime_info_body_bg')
     
     resContent.title = animeInfo.children('h1').text()
+    resContent.og_title = 'Whatch ' + resContent.title + ' on UnLatte'
+
     resContent.thumbnail = animeInfo.children('img').attr('src')
+    resContent.og_image = resContent.thumbnail
 
     let aInfoTag = animeInfo.children('.type')
     resContent.type = aInfoTag[0].children[2].attribs.title
@@ -60,11 +67,14 @@ const anime = async function (req, res){
 const episode = async function (req, res){
     resContent = {
         episode: req.params.episode_id,
+        og_image: 'https://unlatte.cl/image/preview.png',
+        og_title: ''
     }
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.episode}${req.params.episode_id}`)
     const $ = cheerio.load(data)
 
     resContent.title = $('.anime_video_body').children('h1').text()
+    resContent.og_title = resContent.title
     resContent.media_url = $('iframe').attr('src').toString()
     
     let pvfContent = '_'
@@ -104,6 +114,8 @@ const episode = async function (req, res){
 const search = async function (req, res){
     resContent = {
         query: req.params.query,
+        og_title: 'Results for \' ' + req.params.query + '\' on UnLatte',
+        og_image: 'https://unlatte.cl/image/preview.png',
         matches: 0,
         results:[]
     }
