@@ -1,3 +1,4 @@
+const { not } = require('cheerio/lib/api/traversing');
 const fs = require('fs');
 
 const reqlog = function (req){
@@ -10,7 +11,7 @@ const reqlog = function (req){
         time: new Date().toISOString(),
     })
 
-    if (!req.ip in data.ips){
+    if (!(req.ip in data.ips)){
         data.ips.push(req.ip)
         data.uniques++
     }
