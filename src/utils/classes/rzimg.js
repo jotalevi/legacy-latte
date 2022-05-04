@@ -22,6 +22,7 @@ const rzimg = {
         return fs.existsSync('public/image/' + filename)
     },
     downloadAndRezise: async function (uri, filename){
+        return filename
         if (!fs.existsSync('public/image/' + filename)){
             await request(uri).pipe(fs.createWriteStream('public/image/_' + filename))
             await im.resize({
