@@ -7,6 +7,7 @@ const reqlog = function (req){
     data.requests++
     data.items.push({
         ip: fIp,
+        request: req.originalUrl,
         time: new Date().toISOString(),
     })
 
