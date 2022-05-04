@@ -7,6 +7,7 @@ var bodyParser = require('body-parser')
 const PORT = config.port
 
 const app = express()
+app.set('trust proxy', true)
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'pug')
 app.use(cors())
