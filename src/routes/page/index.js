@@ -1,20 +1,20 @@
-const express = require('express');
-const router = express.Router({ mergeParams: true });
-const pageController = require('../../controllers/page');
+const express = require('express')
+const router = express.Router({ mergeParams: true })
+const pageController = require('../../controllers/page')
 
 router.route('/')
-    .get(pageController.popular);
+    .get(pageController.popular)
 
 router.route('/popular/:page_no')
-    .get(pageController.popular);
+    .get(pageController.popular)
 
 router.route('/anime/:anime_id')
-    .get(pageController.anime);
+    .get(pageController.anime)
 
 router.route('/episode/:episode_id')
-    .get(pageController.episode);
+    .get(pageController.episode)
 
 router.route('/search/:query')
-    .get(pageController.search);
+    .get(pageController.search)
 
-module.exports = router;
+module.exports = router

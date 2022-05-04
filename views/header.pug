@@ -26,25 +26,25 @@ div(class='headframe')
           document.getElementById('search-result-box').classList.remove('hidden')
         }
 
-        let xmlHttp = new XMLHttpRequest();
+        let xmlHttp = new XMLHttpRequest()
         xmlHttp.onreadystatechange = function() { 
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            updateScreenData(xmlHttp.responseText);
+            updateScreenData(xmlHttp.responseText)
           }
-        xmlHttp.open('GET', '/api/search/' + searchString, true); // true for asynchronous 
-        xmlHttp.send(null);
+        xmlHttp.open('GET', '/api/search/' + searchString, true) // true for asynchronous 
+        xmlHttp.send(null)
       }
 
       function updateScreenData(rsText){
-        var resultBox = document.getElementById('search-result-box');
-        var child = resultBox.lastChild; 
+        var resultBox = document.getElementById('search-result-box')
+        var child = resultBox.lastChild 
         while (child) {
-            resultBox.removeChild(child);
-            child = resultBox.lastChild;
+            resultBox.removeChild(child)
+            child = resultBox.lastChild
         }
 
         let data = JSON.parse(rsText)
-        for (let i = 0; i < data.results.length; i++){
+        for (let i = 0 i < data.results.length i++){
           let anime = data.results[i]
 
           let a = document.createElement('a')
