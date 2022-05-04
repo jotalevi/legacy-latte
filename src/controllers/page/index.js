@@ -17,11 +17,10 @@ const popular = async function (req, res){
     const $ = cheerio.load(data)
 
     const items = $('.items>li')
-    let srcStr = $(el).children().children().children().attr('src')
     items.each(function (idx, el) {
         let anime = {}
         anime.id = $(el).children().children().attr('href').replace('/category/', '')
-        anime.thumbnail = utils.rzimg.downloadAndRezise(srcStr, $(el).children().children().attr('href').replace('/category/', '') + '.' + srcStr.split('.').pop())
+        anime.thumbnail = $(el).children().children().children().attr('src')
         anime.title = $(el).children('.name').children().text()
         resContent.results.push(anime)
     })
