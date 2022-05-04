@@ -17,7 +17,8 @@ const reqlog = function (req){
     }
 
     fs.writeFileSync('public/data/reqlog.json', JSON.stringify(data))
-    console.log(data)
+    console.log(req.headers['x-forwarded-for'])
+    console.log(req.connection.remoteAddress)
 }
 
 module.exports = {
