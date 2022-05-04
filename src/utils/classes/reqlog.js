@@ -2,16 +2,16 @@ const fs = require('fs');
 
 const reqlog = function (req){
     let data = JSON.parse(fs.readFileSync('public/data/reqlog.json'))
-    
+    let fIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+
     data.requests++
     data.items.push({
-        ip: req.socket.remoteAddress,
-        request: req.originalUrl,
+        ip: fIp,
         time: new Date().toISOString(),
     })
 
-    if (!req.socket.remoteAddress in data.ips){
-        data.ips.push(req.socket.remoteAddress)
+    if (!fIp in data.ips){
+        data.ips.push(fIp)
         data.uniques++
     }
 
