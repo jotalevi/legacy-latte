@@ -1,7 +1,7 @@
 const config = require('../../config')
 const axios = require('axios')
 const cheerio = require('cheerio')
-
+const utils = require('../../utils')
 
 //com/scrape-query/popular/:page_no
 const popular = async function (req, res){
@@ -20,7 +20,7 @@ const popular = async function (req, res){
     items.each(function (idx, el) {
         let anime = {}
         anime.id = $(el).children().children().attr('href').replace('/category/', '')
-        anime.thumbnail = $(el).children().children().children().attr('src')
+        anime.thumbnail = utils.rzimg.downloadAndRezise($(el).children().children().children().attr('src'), $(el).children().children().attr('href').replace('/category/', ''))
         anime.title = $(el).children('.name').children().text()
         resContent.results.push(anime)
     })
