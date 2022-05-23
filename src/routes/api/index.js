@@ -14,9 +14,6 @@ router.route('/episode/:episode_id')
 router.route('/search/:query')
     .get(apiController.search)
 
-router.route('/login')
-    .get(apiController.login)
-
 router.route('/logs')
     .get(apiController.getLogData)
 
