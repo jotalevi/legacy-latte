@@ -1,4 +1,3 @@
-const { not } = require('cheerio/lib/api/traversing');
 const fs = require('fs');
 
 const reqlog = function (req){
