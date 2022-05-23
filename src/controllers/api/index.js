@@ -7,7 +7,9 @@ const utils = require('../../utils')
 //com/scrape-query/popular/:page_no
 const popular = async function (req, res){
     resContent = {
-        page: req.params.page_no,
+        page: isNaN(parseInt(req.params.page_no)) ? 1 : parseInt(req.params.page_no),
+        og_title: 'Watch anime for free on UnLatte',
+        og_image: 'https://unlatte.cl/image/preview.png',
         results:[]
     }
 
@@ -23,13 +25,18 @@ const popular = async function (req, res){
         resContent.results.push(anime)
     })
 
-    res.send(resContent)
+    if (req.originalUrl.split('/')[1] != 'api') 
+        res.render('popular', resContent)
+    else
+        res.send(resContent)
 }
 
 //com/scrape-query/anime/:anime_id
 const anime = async function (req, res){
     resContent = {
         anime: req.params.anime_id,
+        og_title: '',
+        og_image: '',
     }
     //https://www3.gogoanime.cm/category/naruto-shippuuden-dub
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.anime}${req.params.anime_id}`)
@@ -49,13 +56,18 @@ const anime = async function (req, res){
         resContent.episodes.push(`${req.params.anime_id}-episode-${i}`)
     }
 
-    res.send(resContent)
+    if (req.originalUrl.split('/')[1] != 'api') 
+        res.render('anime', resContent)
+    else
+        res.send(resContent)
 }
 
 //com/scrape-query/episode/:episode_id
 const episode = async function (req, res){
     resContent = {
-        anime: req.params.episode_id,
+        episode: req.params.episode_id,
+        og_image: 'https://unlatte.cl/image/preview.png',
+        og_title: ''
     }
     const { data } = await axios.get(`${config.scrape_url}${config.rule_path.episode}${req.params.episode_id}`)
     const $ = cheerio.load(data)
@@ -63,13 +75,18 @@ const episode = async function (req, res){
     resContent.title = $('.anime_video_body').children('h1').text()
     resContent.media_url = $('iframe').attr('src').toString()
     
-    res.send(resContent)
+    if (req.originalUrl.split('/')[1] != 'api') 
+        res.render('episode', resContent)
+    else
+        res.send(resContent)
 }
 
 //com/scrape-query/search/:query
 const search = async function (req, res){
     resContent = {
         query: req.params.query,
+        og_title: 'Results for \' ' + req.params.query + '\' on UnLatte',
+        og_image: 'https://unlatte.cl/image/preview.png',
         matches: 0,
         results:[]
     }
@@ -87,29 +104,10 @@ const search = async function (req, res){
     })
     resContent.matches = resContent.results.length
 
-    res.send(resContent)
-}
-
-const login = async function (req, res){
-    resContent = {
-        username: req.body.username,
-        tp_key: null
-    }
-
-    if (utils.chToken(req.body.token, req.body.username)){
-
-    }else{
-
-    }
-}
-
-const createUser = async function (req, res){
-    resContent = {
-        username: req.body.username,
-        tp_key: null
-    }
-
-    utils.inputCl()
+    if (req.originalUrl.split('/')[1] != 'api')
+        res.render('search', resContent)
+    else
+        res.send(resContent)
 }
 
 const getLogData = async function (req, res){
@@ -121,6 +119,5 @@ module.exports = {
     anime,
     episode,
     search,
-    login,
     getLogData
 }
