@@ -1,6 +1,5 @@
 node_modules
+public/data/reqlog.json
 package-lock.json
 LICENSE
-public/data/
 .vscode
-public/data/reqlog.json
