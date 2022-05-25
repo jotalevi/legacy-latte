@@ -6,10 +6,8 @@ const config = require('../config')
 
 const router = express.Router()
 
-router.use(function (req, res, next) {
-    utils.reqlog(req);
-    next();
-});
+router.use(utils.reqlog)
+router.use(utils.chToken)
 
 router.use(`${config.api_path}`, api)
 router.use(`${config.page_path}`, page)

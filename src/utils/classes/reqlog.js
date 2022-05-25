@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const reqlog = function (req){
+const reqlog = function (req, res, next) {
     let data = JSON.parse(fs.readFileSync('public/data/reqlog.json'))
 
     data.requests++
@@ -16,6 +16,8 @@ const reqlog = function (req){
     }
 
     fs.writeFileSync('public/data/reqlog.json', JSON.stringify(data))
+
+    next()
 }
 
 module.exports = {

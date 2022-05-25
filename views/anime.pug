@@ -2,8 +2,9 @@ html
   head
     include head.pug
   body
+    include header.pug
     div(class='main-frame')
-      include header.pug
+      div(class='h100')
       div(class='animeview')
         p(class='animetitleps')=title
         div(class='h50')
@@ -15,8 +16,29 @@ html
       div(class='eplist')
         - var iEp = 1
         each ep in episodes
-          a(href=`/episode/${ep}`)
-            div(class='epboxvs')
-              p(class='linked')=`${iEp}`
+          a(href=`/episode/${ep}` id=`tab-${iEp}`)
+            if (user == null)
+              div(class='epboxvs')
+                p(class='linked')=`${iEp}`
+            else if (seen.includes(ep))
+              div(class='epboxvs seen')
+                p(class='linked')=`${iEp}`
+            else
+              div(class='epboxvs')
+                p(class='linked')=`${iEp}`
           - iEp++ 
       div(class='h200')
+    script.
+      document.allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+      document.cumulatedInput = ''
+      document.keyTimer = null
+      document.onkeypress = function (e) {
+          if (document.allowedKeys.includes(e.key)){
+            document.cumulatedInput += e.key
+            document.getElementById('tab-' + document.cumulatedInput).focus()
+            window.clearTimeout(document.keyTimer)
+            document.keyTimer = setTimeout(function(){
+              document.cumulatedInput = ''
+            }, 2000); 
+          }
+      };

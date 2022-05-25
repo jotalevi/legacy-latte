@@ -1,50 +1,53 @@
-@media (max-device-width: 480px){
+@media (max-device-width: 480px) {
     .main-frame {
         width: 100% !important;
     }
 
-    .animediv{
+    .animediv {
         height: 400px !important;
         width: 200px !important;
     }
 
-    .thumbdiv{
+    .thumbdiv {
         width: 200px !important;
         height: 300px !important;
     }
 
-    .linked{
+    .linked {
         font-size: 28 !important;
     }
 
-    .fvfTabBoxeA{
-        
+    .fvfTabBoxeA {
         height: 75 !important;
         width: 75 !important;
         font-size: 24px !important;
     }
 
-    .fvfTabBoxes{      
+    .seen {
+        background-color: #466eb461 !important;
+    }
+
+    .fvfTabBoxes {
         height: 75 !important;
         width: 75 !important;
         font-size: 24px !important;
     }
 
-    .sbdivhelper{
+    .sbdivhelper {
         height: 200 !important;
     }
-    
+
     .searchbar {
         width: 350px !important;
         height: 60px !important;
         font-size: 22px !important;
     }
 
-    .headerdivshelper{
+    .headerdivshelper {
         height: 200px !important;
     }
 
-    .logoh1{
+    .logoh1 {
         font-size: 100px !important;
     }
 
@@ -52,12 +55,12 @@
         font-size: 42px !important;
     }
 
-    .headframe-eps{
+    .headframe-eps {
         flex-direction: column !important;
         align-items: center !important;
     }
 
-    .animethumb{
+    .animethumb {
         width: 80% !important;
         height: auto !important;
     }
@@ -66,105 +69,159 @@
         font-size: 14px !important;
     }
 
-    .epboxvs{
+    .epboxvs {
         height: 100px !important;
         width: 100px !important;
     }
 
-    .eplist{
+    .eplist {
         width: 90% !important;
     }
 
-    .srb{
+    .srb {
         width: 100% !important;
         left: 0 !important;
         margin-left: 0 !important;
         top: 192px !important;
     }
 
-    .minithumbdiv{
+    .minithumbdiv {
         width: 200px !important;
         height: 300px !important;
     }
 
-    .animetitlepsinres{
+    .animetitlepsinres {
         overflow-wrap: break-word !important;
         font-size: 27px !important;
     }
 
-    .anime-result-div{
+    .anime-result-div {
         margin: 10 !important;
         flex-wrap: wrap !important;
     }
 }
 
-body{
+body {
     margin: 0;
     background-color: black;
     overflow-y: scroll;
 }
 
 .main-frame {
-    width: 800px;
+    margin-top: -80px !important;
+    max-width: 1000px;
+    width: 100%;
     background-color: #1c1c1c;
     overflow: visible;
     margin: auto;
     padding: 0;
-    min-height: 100%; 
+    min-height: 100%;
 }
 
-.headframe {
+.nav-frame-hollow {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.nav-frame {
+    z-index: 4;
+    background-color: #1c1c1c;
+    position: fixed;
+    width: 100%;
+    padding: 0;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nav-side-frame {
+    height: 80px;
+    background-color: #1C1C1C;
+    flex: auto;
+}
+
+.nav-center-frame {
+    width: 800px;
+    height: 80px;
+    background-color: #1C1C1C;
+}
+
+.headframe-eps {
     display: flex;
     align-content: center;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
 
-.headframe-eps{
-    display: flex;
-    align-content: center;
-    justify-content: space-around;
+.h10 {
+    height: 10;
 }
 
-.h50{
+.h25 {
+    height: 25;
+}
+
+.h50 {
     height: 50;
 }
 
-.h200{
+.h100 {
+    height: 100;
+}
+
+.h200 {
     height: 200;
 }
 
-.headerdivshelper{
+.headerdivshelper {
     height: 150;
     display: table
 }
 
-input, select, textarea{
+input,
+select,
+textarea {
     color: #ffffff;
 }
 
-p{
+p {
     margin: auto;
 }
 
-.sbdivhelper{
-    display: grid;
+.sbdivhelper {
+    display: flex;
     place-items: center;
-    height: 150;
+    height: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.logoh1{
-    white-space: pre;
-    font-weight: 400;
-    font-style: normal;
-    font-family: 'Pacifico', cursive;
-    color: #466eb4;
-    font-size: 72px;
-    letter-spacing: 0px;
-    line-height: 1.2;
-    margin: 0;
-    text-align:center; 
+.logoh1 {
+    font-weight: 900;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #5585d5;
+    font-size: 55px;
+    text-align: left;
     vertical-align: middle;
-    display: table-cell;   
+    margin: 0px !important;
+    margin-left: 15px !important;
 }
 
 .searchbar {
@@ -174,22 +231,21 @@ p{
     background-color: #000000;
     overflow: visible;
     border-radius: 5px;
-    border: 1px solid #466EB4;
-    margin: auto;
+    border: 1px solid #5585d5;
     display: block;
 }
 
-.fvfDivFrame{
+.fvfDivFrame {
     display: flex;
     justify-content: center;
 }
 
-a{
+a {
     text-decoration: none;
     color: #ffffff;
 }
 
-.fvfTabBoxes{
+.fvfTabBoxes {
     background-color: transparent;
     height: 35;
     width: 35;
@@ -209,12 +265,10 @@ a{
     align-content: center;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    border: 1px solid #466eb4;
 }
 
-.fvfTabBoxeA{
-    background-color: #466eb4;
+.fvfTabBoxeA {
+    background-color: #5585d5;
     height: 35;
     width: 35;
     margin: 0;
@@ -238,7 +292,11 @@ a{
     ;
 }
 
-.animegridview{
+.seen {
+    background-color: #466eb461 !important;
+}
+
+.animegridview {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -247,37 +305,39 @@ a{
     align-items: center;
 }
 
-.animediv{
+.animediv {
     height: 300;
     width: 170px;
-    word-wrap:break-word;
+    word-wrap: break-word;
     text-align: center;
     color: white;
 }
 
-.thumbdiv{
+.thumbdiv {
     width: 170px;
     height: 230px;
-    background-color: #466eb4;
+    background-color: #5585d5;
     overflow: visible;
     border-radius: 5px;
 }
 
-.minithumbdiv{
+.minithumbdiv {
     width: 50;
     height: 75;
-    background-color: #466eb4;
+    background-color: #5585d5;
     overflow: visible;
     border-radius: 5px;
 }
 
-.linked{
+.linked {
     font-family: 'Inter-Bold', 'Inter', sans-serif;
 }
 
 .animetitleps {
-    width: auto; /* 327px */
-    height: auto; /* 43px */
+    width: auto;
+    /* 327px */
+    height: auto;
+    /* 43px */
     white-space: pre;
     font-family: 'Inter', sans-serif;
     color: #ffffff;
@@ -287,21 +347,24 @@ a{
     text-align: center;
 }
 
-.animethumb{
+.animethumb {
     width: 300px;
     height: 400px;
-    background-color: #466eb4;
+    background-color: #5585d5;
     overflow: visible;
     border-radius: 5px;
     margin-left: 20;
 }
 
-.sfAnime{
+.sfAnime {
+    max-width: 600;
     margin: 0 20;
     color: white;
+    font-size: 18px;
+    text-align: center;
 }
 
-.epboxvs{
+.epboxvs {
     background-color: transparent;
     height: 50;
     width: 50;
@@ -323,57 +386,63 @@ a{
     align-items: center;
     border-radius: 5px;
     border-radius: 5px;
-    border: 1px solid #466EB4;
+    border: 1px solid #5585d5;
 }
 
-.eplist{
+.eplist {
     margin: auto;
-    width: 549px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: space-around;
     justify-content: space-around;
     align-items: center;
+    max-width: 800px;
 }
 
-.wframe{
+.wframe {
     margin: auto;
     overflow: visible;
     border-radius: 5px;
 }
 
-.extend-h-tab{
+.extend-h-tab {
     display: flex;
     justify-content: space-between;
 }
 
-.srb{
-    display: flex;
+.srb {
     position: absolute;
-    width: 800px;
-    left: 50%;
-    margin-left: -400px;
-    top: 150;
+    z-index: 2;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-height:100%;
-    overflow:visible;
-    background-color: #1c1c1c;
-    border-radius: 5px;
+    overflow: visible;
+    background-color: #1c1c1ce6;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-.anime-result-div{
+.anime-result-div {
+    max-width: 965px;
+    width: 100%;
     display: flex;
-    margin-top: 10;
-    margin-left: 10;
+    margin: 5px !important;
+    padding: 5px !important;
+    background-color: #1c1c1c;
+    border-radius: 10px;
 }
 
-.animetitlepsinres{
+.anime-a-post {
+    width: 100%;
+}
+
+.animetitlepsinres {
     width: auto;
     height: auto;
     white-space: pre;
@@ -387,29 +456,29 @@ a{
     margin-left: 5;
 }
 
-.vlistact{
+.vlistact {
     width: 300px;
     margin: 5px;
 }
 
-.tx-left{
+.tx-left {
     text-align: left;
 }
 
-.tx-center{
+.tx-center {
     text-align: center;
 }
 
-.tx-right{
+.tx-right {
     text-align: right;
 }
 
 ::-webkit-scrollbar {
-     width: 5px;
+    width: 3px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #000000;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -419,4 +488,52 @@ a{
 
 ::-webkit-scrollbar-thumb:hover {
     background: #5585d5;
+}
+
+.ui-name-logo {
+    transition: ease;
+    transition-duration: 500ms;
+    background-color: #414141;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 60;
+    height: 60;
+    border-radius: 100px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    color: white;
+    margin: 0px !important;
+    margin-right: 15px !important;
+}
+
+.i-primary-50 {
+    background-color: #5585d5;
+    border: 0px solid green;
+    border-radius: 5px;
+    width: 150;
+    height: 50;
+    font-size: 26px;
+    text-align: center;
+    color: white !important;
+}
+
+.w-400-norm {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.w-400-left {
+    justify-content: left !important;
+}
+
+.w-400-center {
+    justify-content: center !important;
+}
+
+.w-400-right {
+    justify-content: right !important;
 }

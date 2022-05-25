@@ -17,4 +17,10 @@ router.route('/episode/:episode_id')
 router.route('/search/:query')
     .get(pageController.search)
 
+router.route('/register')
+    .get(pageController.register)
+
+router.route('/login')
+    .get(pageController.login)
+
 module.exports = router

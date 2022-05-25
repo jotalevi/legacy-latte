@@ -1,0 +1,46 @@
+html
+  head
+    include head.pug
+  body
+    include header_empty.pug
+    div(class='main-frame')
+      div(class='h50')
+        div(class='headframe')
+          a(href=`/`, style='margin: auto !important;')
+            div(class='headerdivshelper')
+              p(class='logoh1')='Un Latte'
+        div(class='h50')
+        div(class='h50')
+        input(type='text', class='searchbar', placeholder='Username', id='username', name='username', style='height:30px !important; margin: auto;')
+        div(class='h25')
+        input(type='text', class='searchbar', placeholder='Mail', id='mail', name='mail', style='height:30px !important; margin: auto;')
+        div(class='h25')
+        input(type='password', class='searchbar', placeholder='Password', id='password', name='password', style='height:30px !important; margin: auto;', onSubmit='submit_as_api()')
+        button(class='i-primary-50 searchbar', style='margin: auto;', onClick='submit_as_api()')='Log In'
+        script.
+          function submit_as_api() {
+            var myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+            var urlencoded = new URLSearchParams();
+            urlencoded.append('username', document.getElementById('username').value);
+            urlencoded.append('password', document.getElementById('password').value);
+            urlencoded.append('mail', document.getElementById('mail').value);
+            urlencoded.append('as_api', 'true')
+
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: urlencoded,
+              redirect: 'follow'
+            };
+
+            fetch('/api/register', requestOptions)
+              .then(response => response.text())
+              .then(result => {
+                document.cookie = `token=${result}; path=/`
+                console.log(result)
+                window.location.href = '/'
+              })
+              .catch(error => console.log('error', error));
+          }
