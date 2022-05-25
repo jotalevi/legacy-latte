@@ -1,9 +1,1 @@
-{
-    "uniques": 1,
-    "requests": 0,
-    "ips": [
-        "_"
-    ],
-    "items": [
-    ]
-}
+{"uniques":2,"requests":1,"ips":["_","::1"],"items":[{"ip":"::1","request":"/","time":"2022-05-25T21:25:00.778Z"}]}
