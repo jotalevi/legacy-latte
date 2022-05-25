@@ -3,3 +3,4 @@ package-lock.json
 LICENSE
 public/data/
 .vscode
+public/data/reqlog.json
