@@ -48,7 +48,7 @@
     }
 
     .logoh1 {
-        font-size: 100px !important;
+        font-size: px !important;
     }
 
     .animetitleps {
@@ -99,12 +99,42 @@
         margin: 10 !important;
         flex-wrap: wrap !important;
     }
+
+    .nav-frame {
+        height: 150px !important;
+    }
+
+    .w-400-norm {
+        width: 33% !important;
+    }
+
+    .wide-nav-bar {
+        display: none !important;
+    }
+
+    .thin-nav-bar {
+        display: inherit !important;
+    }
+
+    .ui-name-logo {
+        width: 100 !important;
+        height: 100 !important;
+        font-size: 30px !important;
+    }
 }
 
 body {
     margin: 0;
     background-color: black;
     overflow-y: scroll;
+}
+
+.wide-nav-bar {
+    display: inherit;
+}
+
+.thin-nav-bar {
+    display: none;
 }
 
 .main-frame {
