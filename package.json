@@ -7,8 +7,11 @@
   "scripts": {
     "start:local": "node src",
     "start:serve": "pm2 start src/index.js",
+    "restart:serve": "pm2 delete 0; pm2 start src/index.js",
+    "update": "git stash; git pull; npm i",
+    "quickupdate": "git stash; git pull; npm i; pm2 delete 0; pm2 flush; pm2 start src/index.js",
     "debug": "nodemon src/index.js",
-    "test": "echo \"No test script found\""
+    "pushallmain": "git add .; git commit -m 'push all main called from local to cloud'; git push; git pull;"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -19,6 +22,7 @@
     "express-jwt": "^7.6.2",
     "imagemagick": "^0.1.3",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^10.0.0",
     "mongoose": "^6.3.4",
     "pm2": "^5.2.0",
     "pretty": "^2.0.0",

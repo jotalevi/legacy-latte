@@ -5,6 +5,9 @@ const apiController = require('../../controllers/api')
 router.route('/popular/:page_no')
     .get(apiController.popular)
 
+router.route('/popular')
+    .get(apiController.popular)
+
 router.route('/anime/:anime_id')
     .get(apiController.anime)
 
