@@ -48,7 +48,7 @@ const anime = async function (req, res) {
         seen: []
     }
 
-    if (req.user != null){
+    if (req.user != null) {
         let seenData = await utils.models.SeenBy.find({
             _user_id: req.user.id,
             anime_id: resContent.anime,
@@ -104,43 +104,43 @@ const episode = async function (req, res) {
     resContent.media_url = $('iframe').attr('src').toString()
 
     let pvfContent = '_'
-    try{
+    try {
         let previousEpFullRefList = $('.anime_video_body_episodes_l').children('a')['0'].attribs.href.split('/')
         pvfContent = previousEpFullRefList[previousEpFullRefList.length - 1]
-    }catch (e){
+    } catch (e) {
         console.log(e)
-    }finally{
+    } finally {
         resContent.previousEp = pvfContent
     }
 
     let nxtContent = '_'
-    try{
+    try {
         let nextEpFullRefList = $('.anime_video_body_episodes_r').children('a')['0'].attribs.href.split('/')
         nxtContent = nextEpFullRefList[nextEpFullRefList.length - 1]
-    }catch (e){
+    } catch (e) {
         console.log(e)
-    }finally{
+    } finally {
         resContent.nextEp = nxtContent
     }
 
     let anmContent = '_'
-    try{
+    try {
         let animeFullRefList = $('.anime-info').children('a')['0'].attribs.href.split('/')
         anmContent = animeFullRefList[animeFullRefList.length - 1]
-    }catch (e){
+    } catch (e) {
         console.log(e)
-    }finally{
+    } finally {
         resContent.anime = anmContent
     }
 
-    if (req.user != null){
+    if (req.user != null) {
         let seenData = await utils.models.SeenBy.findOne({
             _user_id: req.user.id,
             anime_id: resContent.anime,
             episd_id: resContent.episode
         })
 
-        if (seenData == undefined){
+        if (seenData == undefined) {
             new utils.models.SeenBy({
                 _user_id: req.user.id,
                 anime_id: resContent.anime,
@@ -148,7 +148,7 @@ const episode = async function (req, res) {
             }).save()
         }
     }
-    
+
     if (req.originalUrl.split('/')[1] != 'api')
         res.render('episode', resContent)
     else
@@ -178,12 +178,12 @@ const search = async function (req, res) {
         resContent.results.push(anime)
     })
     resContent.matches = resContent.results.length
-    
+
     let resFilterHandle = []
     resContent.results.forEach(animeInResult => {
         let unique = true
         resFilterHandle.forEach(animeInFiltered => {
-            if (animeInFiltered.id === animeInResult.id){
+            if (animeInFiltered.id === animeInResult.id) {
                 unique = false
             }
         })
@@ -200,15 +200,15 @@ const search = async function (req, res) {
 
 //:/api/auth
 const auth = async function (req, res) {
-    let user = await utils.models.User.findOne({token: req.body.token.toString()})
-    
+    let user = await utils.models.User.findOne({ token: req.body.token.toString() })
+
     if (user === null)
         res.sendStatus(403)
     else
-        if (req.body.as_api != undefined){
+        if (req.body.as_api != undefined) {
             res.send(jwt.sign(JSON.stringify(user), config.jwt_secret))
-        }else{
-            res.render('setTokenAndRedir', {jwt: jwt.sign(JSON.stringify(user), config.jwt_secret)})
+        } else {
+            res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(user), config.jwt_secret) })
         }
 
 }
@@ -222,11 +222,11 @@ const register = async function (req, res) {
         }
     )
 
-    if (req.body.as_api != undefined){
+    if (req.body.as_api != undefined) {
         newUser.save().then(res.send(jwt.sign(JSON.stringify(newUser), config.jwt_secret)))
-        
-    }else{
-        newUser.save().then(res.render('setTokenAndRedir', {jwt: jwt.sign(JSON.stringify(newUser), config.jwt_secret)}))
+
+    } else {
+        newUser.save().then(res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(newUser), config.jwt_secret) }))
     }
 }
 

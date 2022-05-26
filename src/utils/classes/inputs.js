@@ -1,5 +1,5 @@
 const newUserInput = {
-    username:{
+    username: {
         type: String,
         length: {
             min: 4,

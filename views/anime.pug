@@ -33,12 +33,12 @@ html
       document.cumulatedInput = ''
       document.keyTimer = null
       document.onkeypress = function (e) {
-          if (document.allowedKeys.includes(e.key)){
-            document.cumulatedInput += e.key
-            document.getElementById('tab-' + document.cumulatedInput).focus()
-            window.clearTimeout(document.keyTimer)
-            document.keyTimer = setTimeout(function(){
-              document.cumulatedInput = ''
-            }, 2000); 
-          }
+        if (document.allowedKeys.includes(e.key)){
+          document.cumulatedInput += e.key
+          document.getElementById('tab-' + document.cumulatedInput).focus()
+          window.clearTimeout(document.keyTimer)
+          document.keyTimer = setTimeout(function(){
+            document.cumulatedInput = ''
+          }, 2000); 
+        }
       };

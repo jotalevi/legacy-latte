@@ -9,7 +9,7 @@ html
         p(class='animetitleps')=title
       div(class='h50')
       div(class='wframe')
-        iframe(src=media_url, width='100%', height='360px', allowfullscreen='true', frameborder='0', marginwidth='0', marginheight='0', scrolling='no')
+        iframe(src=media_url, width='100%' height='360px' allowfullscreen='true' frameborder='0' marginwidth='0' marginheight='0' scrolling='no')
       div(class='extend-h-tab')
         if previousEp != '_'
           a(href='/episode/' + previousEp, class='vlistact')
@@ -17,10 +17,10 @@ html
         else
           a(href='' + previousEp, class='vlistact tx-left')
             p(class='linked')=''
-        
+
         a(href='/anime/' + anime, class='vlistact tx-center')
           p(class='linked')='View Anime Page'
-        
+
         if nextEp != '_'
           a(href='/episode/' + nextEp, class='vlistact tx-right')
             p(class='linked')='Next Ep'

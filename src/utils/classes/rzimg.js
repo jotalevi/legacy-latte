@@ -3,11 +3,11 @@ const request = require('request')
 var im = require('imagemagick')
 
 const rzimg = {
-    donwload: async function (uri, filename){
+    donwload: async function (uri, filename) {
         await request(uri).pipe(fs.createWriteStream('public/image/' + filename))
         return filename
     },
-    rezize: async function (filename){
+    rezize: async function (filename) {
         fs.renameSync('public/image/' + filename, 'public/image/_' + filename)
         await im.resize({
             srcPath: 'public/image/_' + filename,
@@ -18,12 +18,12 @@ const rzimg = {
         fs.rmSync('public/image/_' + filename)
         return filename
     },
-    check: function (){
+    check: function () {
         return fs.existsSync('public/image/' + filename)
     },
-    downloadAndRezise: async function (uri, filename){
+    downloadAndRezise: async function (uri, filename) {
         return filename
-        if (!fs.existsSync('public/image/' + filename)){
+        if (!fs.existsSync('public/image/' + filename)) {
             await request(uri).pipe(fs.createWriteStream('public/image/_' + filename))
             await im.resize({
                 srcPath: 'public/image/_' + filename,

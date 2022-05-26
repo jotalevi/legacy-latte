@@ -10,7 +10,7 @@ const reqlog = function (req, res, next) {
         time: new Date().toISOString(),
     })
 
-    if (!data.ips.includes(req.ip)){
+    if (!data.ips.includes(req.ip)) {
         data.ips.push(req.ip)
         data.uniques++
     }
