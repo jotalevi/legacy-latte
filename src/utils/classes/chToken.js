@@ -5,7 +5,7 @@ const { models } = require('./models')
 const chToken = function (req, res, next) {
     let token = ''
 
-    if (req.headers.cookie != null && req.headers.cookie != undefine) {
+    if (req.headers.cookie != null && req.headers.cookie != undefined) {
         req.headers.cookie.split(';').forEach(v => {
             if (v.split('=')[0] === 'token')
                 token = v.split('=')[1]

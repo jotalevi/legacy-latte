@@ -10,6 +10,7 @@
     "restart:serve": "pm2 delete 0; pm2 start src/index.js",
     "update": "git stash; git pull; npm i",
     "quickupdate": "git stash; git pull; npm i; pm2 delete 0; pm2 flush; pm2 start src/index.js",
+    "quickpush": "git add .; git commit -m \"changes pushed by quickpush\"; git push; git pull;",
     "debug": "nodemon src/index.js",
     "pushallmain": "git add .; git commit -m 'push all main called from local to cloud'; git push; git pull;"
   },
