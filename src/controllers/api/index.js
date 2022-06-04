@@ -7,9 +7,7 @@ const { userInfo } = require('os');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
-
-
-//com/scrape-query/popular/:page_no
+//com/api/popular/:page_no
 const popular = async function (req, res) {
     resContent = {
         page: isNaN(parseInt(req.params.page_no)) ? 1 : parseInt(req.params.page_no),
@@ -37,7 +35,7 @@ const popular = async function (req, res) {
         res.send(resContent)
 }
 
-//com/scrape-query/anime/:anime_id
+//com/api/anime/:anime_id
 const anime = async function (req, res) {
     resContent = {
         anime: req.params.anime_id,
@@ -88,7 +86,7 @@ const anime = async function (req, res) {
         res.send(resContent)
 }
 
-//com/scrape-query/episode/:episode_id
+//com/api/episode/:episode_id
 const episode = async function (req, res) {
     resContent = {
         episode: req.params.episode_id,
@@ -155,7 +153,7 @@ const episode = async function (req, res) {
         res.send(resContent)
 }
 
-//com/scrape-query/search/:query
+//com/api/search/:query
 const search = async function (req, res) {
     resContent = {
         query: req.params.query,
