@@ -1,10 +1,8 @@
+require('dotenv').config();
 const http = require('http')
 const cors = require('cors')
-const config = require('./config')
 const express = require('express')
 var bodyParser = require('body-parser')
-
-const PORT = config.port
 
 const app = express()
 app.set('trust proxy', true)
@@ -16,6 +14,6 @@ app.use(routes)
 app.use(express.static('public'))
 
 const httpServer = http.createServer(app)
-httpServer.listen(PORT)
+httpServer.listen(process.env.PORT)
 
 module.exports = { app }

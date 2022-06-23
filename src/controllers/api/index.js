@@ -1,9 +1,7 @@
 const fs = require('fs');
-const config = require('../../config')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const utils = require('../../utils');
-const { userInfo } = require('os');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
@@ -17,7 +15,7 @@ const popular = async function (req, res) {
         user: req.user
     }
 
-    const { data } = await axios.get(`${config.scrape_url}${config.rule_path.popular}${req.params.page_no}`)
+    const { data } = await axios.get(`${process.env.SCRAPE_URL}${process.env.PATH_POPULAR}${req.params.page_no}`)
     const $ = cheerio.load(data)
 
     const items = $('.items>li')
@@ -60,7 +58,7 @@ const anime = async function (req, res) {
     }
 
     //https://www3.gogoanime.cm/category/naruto-shippuuden-dub
-    const { data } = await axios.get(`${config.scrape_url}${config.rule_path.anime}${req.params.anime_id}`)
+    const { data } = await axios.get(`${process.env.SCRAPE_URL}${process.env.PATH_ANIME}${req.params.anime_id}`)
     const $ = cheerio.load(data)
 
     const animeInfo = $('.anime_info_body_bg')
@@ -95,7 +93,7 @@ const episode = async function (req, res) {
         user: req.user
     }
 
-    const { data } = await axios.get(`${config.scrape_url}${config.rule_path.episode}${req.params.episode_id}`)
+    const { data } = await axios.get(`${process.env.SCRAPE_URL}${process.env.PATH_EPISODE}${req.params.episode_id}`)
     const $ = cheerio.load(data)
 
     resContent.title = $('.anime_video_body').children('h1').text()
@@ -164,7 +162,7 @@ const search = async function (req, res) {
         user: req.user
     }
 
-    const { data } = await axios.get(`${config.scrape_url}${config.rule_path.search}${req.params.query}`)
+    const { data } = await axios.get(`${process.env.SCRAPE_URL}${process.env.PATH_SEARCH}${req.params.query}`)
     const $ = cheerio.load(data)
 
     const items = $('.items>li')
@@ -204,9 +202,9 @@ const auth = async function (req, res) {
         res.sendStatus(403)
     else
         if (req.body.as_api != undefined) {
-            res.send(jwt.sign(JSON.stringify(user), config.jwt_secret))
+            res.send(jwt.sign(JSON.stringify(user), process.env.JWT_SECRET))
         } else {
-            res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(user), config.jwt_secret) })
+            res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(user), process.env.JWT_SECRET) })
         }
 
 }
@@ -221,10 +219,10 @@ const register = async function (req, res) {
     )
 
     if (req.body.as_api != undefined) {
-        newUser.save().then(res.send(jwt.sign(JSON.stringify(newUser), config.jwt_secret)))
+        newUser.save().then(res.send(jwt.sign(JSON.stringify(newUser), process.env.JWT_SECRET)))
 
     } else {
-        newUser.save().then(res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(newUser), config.jwt_secret) }))
+        newUser.save().then(res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(newUser), process.env.JWT_SECRET) }))
     }
 }
 

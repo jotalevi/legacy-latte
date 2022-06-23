@@ -1,7 +1,3 @@
-const config = require('../../config')
-const axios = require('axios')
-const cheerio = require('cheerio')
-const utils = require('../../utils')
 const api = require('../api')
 
 //com/scrape-query/popular/:page_no

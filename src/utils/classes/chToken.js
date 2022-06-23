@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-const config = require('../../config')
 const { models } = require('./models')
 
 const chToken = function (req, res, next) {
@@ -12,7 +11,7 @@ const chToken = function (req, res, next) {
         })
     }
 
-    jwt.verify(token, config.jwt_secret, async (err, data) => {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
         if (err) {
             req.user = null
         } else {
