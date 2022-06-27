@@ -1,0 +1,19 @@
+html
+  head
+    include head.pug
+  body
+    include header_empty.pug
+    div(class='main-frame')
+      div(class='h50')
+        div(class='headframe')
+          a(href=`/`, style='margin: auto !important;')
+            div(class='headerdivshelper')
+              p(class='logoh1')='Un Latte'
+        div(class='h200')
+        input(type='text' class='searchbar' placeholder='Enter your code' id='code' name='code' style='height:50px !important; margin: auto; border: 0px !important;' onSubmit='checkCode()')
+        div(class='h25')
+        button(class='i-primary-50 searchbar' style='margin: auto;' onClick='checkCode()')='check code'
+        script.
+          function checkCode() {
+            window.location.href = '/trx/' + document.getElementById('code').value
+          }

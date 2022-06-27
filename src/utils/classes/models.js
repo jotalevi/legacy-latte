@@ -17,9 +17,18 @@ const SeenBy = mongoose.model('SeenBy',
     }
 )
 
+const TrxSession = mongoose.model('TrxSession',
+    {
+        _user_id: String,
+        episd_id: String,
+        tx_token: String,
+    }
+)
+
 const models = {
     User: User,
     SeenBy: SeenBy,
+    TrxSession: TrxSession,
 }
 
 module.exports = {

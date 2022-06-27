@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 //com/api/popular/:page_no
-const popular = async function (req, res) {
+const popular = async (req, res) => {
     resContent = {
         page: isNaN(parseInt(req.params.page_no)) ? 1 : parseInt(req.params.page_no),
         og_title: 'Watch anime for free on UnLatte',
@@ -27,14 +27,11 @@ const popular = async function (req, res) {
         resContent.results.push(anime)
     })
 
-    if (req.originalUrl.split('/')[1] != 'api')
-        res.render('popular', resContent)
-    else
-        res.send(resContent)
+    renderOrJson(req, res, resContent, 'popular')
 }
 
 //com/api/anime/:anime_id
-const anime = async function (req, res) {
+const anime = async (req, res) => {
     resContent = {
         anime: req.params.anime_id,
         og_title: '',
@@ -78,14 +75,11 @@ const anime = async function (req, res) {
         resContent.episodes.push(`${req.params.anime_id}-episode-${i}`)
     }
 
-    if (req.originalUrl.split('/')[1] != 'api')
-        res.render('anime', resContent)
-    else
-        res.send(resContent)
+    renderOrJson(req, res, resContent, 'anime')
 }
 
 //com/api/episode/:episode_id
-const episode = async function (req, res) {
+const episode = async (req, res) => {
     resContent = {
         episode: req.params.episode_id,
         og_image: 'https://unlatte.cl/image/preview.png',
@@ -145,14 +139,11 @@ const episode = async function (req, res) {
         }
     }
 
-    if (req.originalUrl.split('/')[1] != 'api')
-        res.render('episode', resContent)
-    else
-        res.send(resContent)
+    renderOrJson(req, res, resContent, 'episode')
 }
 
 //com/api/search/:query
-const search = async function (req, res) {
+const search = async (req, res) => {
     resContent = {
         query: req.params.query,
         og_title: 'Results for \' ' + req.params.query + '\' on UnLatte',
@@ -188,14 +179,11 @@ const search = async function (req, res) {
     });
     resContent.results = resFilterHandle
 
-    if (req.originalUrl.split('/')[1] != 'api')
-        res.render('search', resContent)
-    else
-        res.send(resContent)
+    renderOrJson(req, res, resContent, 'search')
 }
 
 //:/api/auth
-const auth = async function (req, res) {
+const auth = async (req, res) => {
     let user = await utils.models.User.findOne({ token: req.body.token.toString() })
 
     if (user === null)
@@ -204,31 +192,99 @@ const auth = async function (req, res) {
         if (req.body.as_api != undefined) {
             res.send(jwt.sign(JSON.stringify(user), process.env.JWT_SECRET))
         } else {
-            res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(user), process.env.JWT_SECRET) })
+            let token = jwt.sign(JSON.stringify(user), process.env.JWT_SECRET)
+            res.render('redirHandle', {destination: '/', cookies: [{name:'token', path: '/', value: token}]})
         }
-
 }
 
-const register = async function (req, res) {
+const register = async (req, res) => {
     let newUser = new utils.models.User(
         {
             username: req.body.username,
-            token: utils.cyrb53(req.body.username + req.body.password).toString(),
+            token: req.body.token,
             mail: req.body.mail,
         }
     )
 
     if (req.body.as_api != undefined) {
         newUser.save().then(res.send(jwt.sign(JSON.stringify(newUser), process.env.JWT_SECRET)))
-
     } else {
-        newUser.save().then(res.render('setTokenAndRedir', { jwt: jwt.sign(JSON.stringify(newUser), process.env.JWT_SECRET) }))
+        await newUser.save()
+        let token = jwt.sign(JSON.stringify(newUser), process.env.JWT_SECRET)
+        res.render('redirHandle', {destination: '/', cookies: [{name:'token', path: '/', value: token}]})
     }
 }
 
 //:/api/logs
-const getLogData = async function (req, res) {
+const getLogData = async (req, res) => {
     res.json(JSON.parse(fs.readFileSync('public/data/reqlog.json')))
+}
+
+const profile = async (req, res) => {
+    if (req.user != null) {
+        let seenData = await utils.models.SeenBy.find({_user_id: req.user.id}, null, {sort: {date: -1}})
+        let animSeen = []
+
+        seenData.forEach( (el) => {
+            if (!animSeen.includes(el.anime_id))
+                animSeen.push(el.anime_id)
+        })
+
+        resContent = {
+            og_title: 'Watch anime for free on UnLatte',
+            og_image: 'https://unlatte.cl/image/preview.png',
+            user: req.user,
+            anime_list: animSeen,
+            saved_list: [],
+        }
+        
+        renderOrJson(req, res, resContent, 'profile')
+    } else {
+        await login(req, res)
+    }
+}
+
+//:/share/:episode_id
+const share = async (req, res) => {
+    let session = new utils.models.TrxSession({
+        _user_id: (req.user == null ? '_' : req.user.id), 
+        episd_id: req.params.episode_id,
+        tx_token: utils.quickTk(6),
+    })
+    await session.save()
+    
+    resContent = {
+        og_title: 'Watch anime for free on UnLatte',
+        og_image: 'https://unlatte.cl/image/preview.png',
+        user: req.user,
+        tx_session: session,
+    }
+
+    renderOrJson(req, res, resContent, 'share')
+}
+
+//:/trx
+const trxInput = async (req, res) => {
+    renderOrJson(req, res, {}, 'trx')
+}
+
+//:/trx/:token
+const trxRedir = async (req, res) => {
+    let trxSession = (await utils.models.TrxSession.find({tx_token: req.params.token}))[0]
+    let user = await utils.models.User.findById(trxSession._user_id)
+    let token = await jwt.sign(JSON.stringify(user), process.env.JWT_SECRET)
+    res.render('redirHandle', {destination: '/episode/' + trxSession.episd_id, cookies: [{name:'token', path: '/', value: token}]})
+}
+
+const renderOrJson = async (req, res, resContent, page) => {
+    if (req.originalUrl.split('/')[1] != 'api') {
+        res.render(page, resContent)
+    } else {
+        delete resContent?.user?.token
+        delete resContent?.og_title
+        delete resContent?.og_image
+        res.json(resContent)
+    }
 }
 
 module.exports = {
@@ -238,5 +294,9 @@ module.exports = {
     search,
     getLogData,
     auth,
-    register
+    register,
+    profile,
+    share,
+    trxInput,
+    trxRedir,
 }

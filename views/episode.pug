@@ -15,16 +15,22 @@ html
           a(href='/episode/' + previousEp, class='vlistact')
             p(class='linked')='Previous Ep'
         else
-          a(href='' + previousEp, class='vlistact tx-left')
+          a(href='', class='vlistact tx-left')
             p(class='linked')=''
-
         a(href='/anime/' + anime, class='vlistact tx-center')
           p(class='linked')='View Anime Page'
-
         if nextEp != '_'
           a(href='/episode/' + nextEp, class='vlistact tx-right')
             p(class='linked')='Next Ep'
         else
-          a(href='' + nextEp, class='vlistact')
+          a(href='', class='vlistact')
             p(class='linked')=''
+      div(class='h50')
+      div(class='extend-h-tab')
+        a(href='/share/' + episode)
+          p(class='linked')=''
+        a(href='/share/' + episode)
+          p(class='linked')='whatch on your TV'
+        a(href='/share/' + episode)
+          p(class='linked')=''
       div(class='h200')

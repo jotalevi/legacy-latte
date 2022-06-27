@@ -1,0 +1,12 @@
+html
+  head
+    include head.pug
+  body
+    include header.pug
+    div(class='main-frame')
+      div(class='h200')
+      div(class='animetitleps')='Share content to a diferent device:'
+      div(class='animetitleps')='Open https://unlatte.cl/trx on the other device'
+      div(class='animetitleps')='Enter the code and press enter'
+      div(class='animetitleps', style='color:#bcbcbc;')=tx_session.tx_token
+    

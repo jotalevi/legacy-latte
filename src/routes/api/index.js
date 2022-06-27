@@ -26,4 +26,16 @@ router.route('/register')
 router.route('/logs')
     .get(apiController.getLogData)
 
+router.route('/profile')
+    .get(apiController.profile)
+
+router.route('/share/:episode_id')
+    .get(apiController.share)
+
+router.route('/trx')    
+    .get(apiController.trxInput)
+
+router.route('/trx/:token')
+    .get(apiController.trxRedir)
+
 module.exports = router

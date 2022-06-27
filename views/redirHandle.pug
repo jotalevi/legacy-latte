@@ -1,0 +1,23 @@
+input(type='hidden' name='page' value=destination)
+each cookie in cookies
+  input(type='hidden' name=cookie.name value=cookie.value  path=cookie.path)
+
+script.
+  function i(){
+    let cookies = []
+    let destination = '/'
+    let els = document.getElementsByTagName('input')
+    for (let element of els) {
+      if (element.name === 'page')
+        destination = element.value
+      else
+        cookies.push({name: element.name, value: element.value, path: element.path})
+    }
+
+    cookies.forEach((element) => {
+      document.cookie = `${element.name}=${element.value}; path=${element.path ?? '/'};`
+    })
+    
+    window.location.href = destination;
+  }
+  i()
