@@ -1,4 +1,15 @@
 @media (max-device-width: 480px) {
+    .regFormBox{
+        width: 500 !important;
+    }
+
+    .rforminput {
+        height: 50px !important;
+        margin: auto;
+        width: 100% !important;
+        font-size: 28px !important;
+    }
+
     .main-frame {
         width: 100% !important;
     }

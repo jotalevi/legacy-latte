@@ -8,11 +8,11 @@ html
       div(class='regFormBox')
         p(class='animetitleps')='Create your account'
         div(class='h15')
-        input(type='text' class='searchbar' placeholder='   Username' id='username' name='username' style='height:40px !important; margin: auto; width: 100% !important;')
+        input(type='text' class='searchbar rforminput' placeholder='   Username' id='username' name='username' style='height:40px; margin: auto; width: 100%;')
         div(class='h15')
-        input(type='text' class='searchbar' placeholder='   Mail' id='mail' name='mail' style='height:40px !important; margin: auto; width: 100% !important;')
+        input(type='text' class='searchbar rforminput' placeholder='   Mail' id='mail' name='mail' style='height:40px; margin: auto; width: 100%;')
         div(class='h15')
-        input(type='password' class='searchbar' placeholder='   Password' id='password' name='password' style='height:40px !important; margin: auto; width: 100% !important;' onSubmit='submit_as_api()')
+        input(type='password' class='searchbar rforminput' placeholder='   Password' id='password' name='password' style='height:40px ; margin: auto; width: 100%;' onSubmit='submit_as_api()')
         div(class='h15')
         div(style='display: inline-flex;')
           input(type='checkbox')
@@ -23,6 +23,7 @@ html
           p(class='linked' style='color: white; margin-left:10px;')='I agree to the terms and conditions of unlatte' 
         div(class='h15')
         button(class='i-primary-50 searchbar' style='margin: auto;' onClick='submit_as_api()')='Register'
+        div(class='h15')
     script.
       function cyrb53(str, seed = 0) {
         let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
