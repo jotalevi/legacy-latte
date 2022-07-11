@@ -214,6 +214,10 @@ body {
     height: 10;
 }
 
+.h15 {
+    height: 15;
+}
+
 .h25 {
     height: 25;
 }
@@ -274,7 +278,7 @@ p {
     background-color: #000000;
     overflow: visible;
     border-radius: 5px;
-    border: 1px solid #5585d5;
+    border: 1px solid #122f613b;
     display: block;
 }
 
@@ -590,4 +594,16 @@ a {
 
 .w-400-right {
     justify-content: right !important;
+}
+
+.regFormParent{
+    width: 100%;   
+}
+
+.regFormBox {
+    background-color: #1c1c1c;
+    margin: auto;
+    width: 300;
+    padding: 10px;
+    border-radius: 15px;
 }
