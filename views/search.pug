@@ -4,11 +4,15 @@ html
   body
     include header.pug
     div(class='main-frame')
-      div(class='h50')
-      div(class='srb')
+      div(class='h100')
+      p(class='animetitleps')='Showing results for \'' + query + '\''
+      div(class='h25')
+      div(class='animegridview')
         each anime in results
-          a(href='/anime/' + anime.id)
-            div(class='anime-result-div')
-              img(src=anime.thumbnail, alt=anime.title, class='minithumbdiv')
-              p(class='animetitlepsinres')=anime.title
+          a(href='/anime/' + anime.id, title=anime.title)
+            div(class='animediv')
+              div(class='thumbdiv')
+                img(src=anime.thumbnail, alt=anime.title, class='thumbdiv')
+              br 
+              p(class='linked')=anime.title
         div(class='h200')
