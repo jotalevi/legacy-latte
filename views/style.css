@@ -53,6 +53,10 @@
 
     .animetitleps {
         font-size: 42px !important;
+        padding-left: 50;
+        padding-right: 50;
+        word-break: break-all;
+        white-space: normal !important;
     }
 
     .headframe-eps {
@@ -91,8 +95,11 @@
     }
 
     .animetitlepsinres {
-        overflow-wrap: break-word !important;
         font-size: 27px !important;
+        padding-left: 50;
+        padding-right: 50;
+        word-break: break-all;
+        white-space: normal !important;
     }
 
     .anime-result-div {
@@ -365,9 +372,7 @@ a {
 
 .animetitleps {
     width: auto;
-    /* 327px */
     height: auto;
-    /* 43px */
     white-space: pre;
     font-family: 'Inter', sans-serif;
     color: #ffffff;
@@ -375,6 +380,9 @@ a {
     letter-spacing: 0px;
     line-height: 1.2;
     text-align: center;
+    padding: 0 50 0 50;
+    word-break: break-all;
+    white-space: normal !important;
 }
 
 .animethumb {
@@ -440,6 +448,7 @@ a {
 .extend-h-tab {
     display: flex;
     justify-content: space-between;
+    padding: 0 50 0 50;
 }
 
 .srb {
@@ -484,6 +493,9 @@ a {
     text-align: center;
     margin-bottom: 3;
     margin-left: 5;
+    padding: 0 50 0 50;
+    word-break: break-all;
+    white-space: normal !important;
 }
 
 .vlistact {
