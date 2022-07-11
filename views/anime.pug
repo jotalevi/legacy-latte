@@ -14,19 +14,24 @@ html
           p(class='linked sfAnime', style='-webkit-line-clamp: 15 !important;')=info
       div(class='h50')
       div(class='eplist')
-        - var iEp = 1
-        each ep in episodes
+        if (episodes.length === 1)
           a(href=`/episode/${ep}` id=`tab-${iEp}`)
-            if (user == null)
-              div(class='epboxvs')
-                p(class='linked')=`${iEp}`
-            else if (seen.includes(ep))
-              div(class='epboxvs seen')
-                p(class='linked')=`${iEp}`
-            else
-              div(class='epboxvs')
-                p(class='linked')=`${iEp}`
-          - iEp++ 
+            div(class='epboxvs')
+              p(class='linked')='watch'
+        else
+          - var iEp = 1
+          each ep in episodes
+            a(href=`/episode/${ep}` id=`tab-${iEp}`)
+              if (user == null)
+                div(class='epboxvs')
+                  p(class='linked')=`${iEp}`
+              else if (seen.includes(ep))
+                div(class='epboxvs seen')
+                  p(class='linked')=`${iEp}`
+              else
+                div(class='epboxvs')
+                  p(class='linked')=`${iEp}`
+            - iEp++ 
       div(class='h200')
     script.
       document.allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
