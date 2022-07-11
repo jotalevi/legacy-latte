@@ -4,8 +4,15 @@ html
   body
     include header_empty.pug
     div(class='main-frame')
-      div(class='h50')
-        div(class='headframe')
-          a(href=`/`, style='margin: auto !important;')
-            div(class='headerdivshelper')
-              p(class='logoh1')='Un Latte'
+      div(class='h100')
+      p(class='animetitleps')='Last seen:'
+      div(class='h25')
+      div(class='animegridview') 
+        each anime in seen_list
+          a(href='/anime/' + anime.id, title=anime.title)
+            div(class='animediv')
+              div(class='thumbdiv')
+                img(src=anime.thumbnail, alt=anime.title, class='thumbdiv')
+              div(class='pc_parent', style='width: 100%;height: 5;background-color: black;margin: 5 0 5 0;border-radius: 5px;')
+                div(class='pc_child', style='width:' + anime.seen.length * 100 / anime.number_of_episodes + '%; height: 5;background-color: #229722;border-radius: 5px;')
+              p(class='linked')=anime.title

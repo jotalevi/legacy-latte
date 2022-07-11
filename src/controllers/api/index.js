@@ -149,7 +149,6 @@ const search = async (req, res) => {
         og_title: 'Results for \' ' + req.params.query + '\' on UnLatte',
         og_image: 'https://unlatte.cl/image/preview.png',
         matches: 0,
-        results: [],
         user: req.user
     }
 
@@ -157,13 +156,15 @@ const search = async (req, res) => {
     const $ = cheerio.load(data)
 
     const items = $('.items>li')
+    rslist = []
     items.each(function (idx, el) {
         let anime = {}
         anime.id = $(el).children().children().attr('href').replace('/category/', '')
         anime.thumbnail = $(el).children().children().children().attr('src')
         anime.title = $(el).children('.name').children().text()
-        resContent.results.push(anime)
+        rslist.push(anime)
     })
+    resContent.results = rslist
     resContent.matches = resContent.results.length
 
     let resFilterHandle = []
@@ -220,22 +221,62 @@ const getLogData = async (req, res) => {
     res.json(JSON.parse(fs.readFileSync('public/data/reqlog.json')))
 }
 
+const getAnDataAsync = async (user, element) => {
+    let animeData = {
+        id: element.anime_id,
+        seen: [],
+        title: '',
+        thumbnail: '',
+        number_of_episodes: 0
+    }
+
+    if (user != null) {
+        let seenData = await utils.models.SeenBy.find({
+            _user_id: user.id,
+            anime_id: element.anime_id,
+        })
+        slist = []
+        if (seenData != null) {
+            seenData.forEach(item => {
+                slist.push(item.episd_id)
+            })
+        }
+        animeData.seen = slist
+    }
+
+    let { data } = await axios.get(`${process.env.SCRAPE_URL}${process.env.PATH_ANIME}${element.anime_id}`)
+    let $ = cheerio.load(data)
+
+    let animeInfo = $('.anime_info_body_bg')
+    animeData.title = animeInfo.children('h1').text()
+    animeData.thumbnail = animeInfo.children('img').attr('src')
+
+    let animeEpCounter = $('#episode_page')
+    epCounter = parseInt(animeEpCounter.children('li').last().text().split('-')[1])
+    animeData.number_of_episodes = epCounter
+
+    return animeData
+}
+
+//:/profile
 const profile = async (req, res) => {
     if (req.user != null) {
         let seenData = await utils.models.SeenBy.find({_user_id: req.user.id}, null, {sort: {date: -1}})
-        let animSeen = []
+        seenData = seenData.filter((value, index, self) =>
+            index === self.findIndex((t) => (
+                t.anime_id === value.anime_id
+            ))
+        ).reverse()
 
-        seenData.forEach( (el) => {
-            if (!animSeen.includes(el.anime_id))
-                animSeen.push(el.anime_id)
+        let promiseList = []
+        seenData.forEach((element) => {
+            promiseList.push(getAnDataAsync(req.user, element))
         })
+        let animSeen = await Promise.all(promiseList)
 
         resContent = {
-            og_title: 'Watch anime for free on UnLatte',
-            og_image: 'https://unlatte.cl/image/preview.png',
             user: req.user,
-            anime_list: animSeen,
-            saved_list: [],
+            seen_list: animSeen,
         }
         
         renderOrJson(req, res, resContent, 'profile')
