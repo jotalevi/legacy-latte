@@ -5,7 +5,6 @@ const utils = require('../utils')
 
 const router = express.Router()
 
-router.use(utils.reqlog)
 router.use(utils.chToken)
 
 router.use(`${process.env.API_PATH}`, api)

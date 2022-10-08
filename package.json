@@ -5,6 +5,7 @@
   "description": "An anime streaming service",
   "author": "jotalevi",
   "scripts": {
+    "start": "node src",
     "start:local": "node src",
     "start:serve": "pm2 start src/index.js",
     "restart:serve": "pm2 delete 0; pm2 start src/index.js",

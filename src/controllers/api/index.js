@@ -216,11 +216,6 @@ const register = async (req, res) => {
     }
 }
 
-//:/api/logs
-const getLogData = async (req, res) => {
-    res.json(JSON.parse(fs.readFileSync('public/data/reqlog.json')))
-}
-
 const getAnDataAsync = async (user, element) => {
     let animeData = {
         id: element.anime_id,
