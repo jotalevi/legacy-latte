@@ -328,7 +328,6 @@ module.exports = {
     anime,
     episode,
     search,
-    getLogData,
     auth,
     register,
     profile,

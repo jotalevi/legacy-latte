@@ -23,9 +23,6 @@ router.route('/auth')
 router.route('/register')
     .post(apiController.register)
 
-router.route('/logs')
-    .get(apiController.getLogData)
-
 router.route('/profile')
     .get(apiController.profile)
 
