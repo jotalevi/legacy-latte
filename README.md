@@ -22,5 +22,13 @@ npm i
 
 Now just run it:
 ```
-
+npm run start
 ```
+
+Or 
+```
+npm run start:debug
+```
+for debuging.
+
+Hope you like it
